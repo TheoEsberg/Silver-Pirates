@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Silver_Pirates_API
 {
-    internal class Project
+    public class Project
     {
         [Key]
         public int ProjectId { get; set; }
-        public ICollection<Employee> Employees { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public ICollection<EmployeeProject> EmployeeProjects { get; set; }
     }
 }

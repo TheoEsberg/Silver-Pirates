@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Silver_Pirates.Models;
+
 namespace Silver_Pirates
 {
     public class Program
@@ -7,11 +10,12 @@ namespace Silver_Pirates
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Connection-Theo")));
 
             var app = builder.Build();
 
