@@ -44,6 +44,10 @@ För att kunna få VG ska du:
 - Skicka in en text-fil som innehåller länken till ett Github-repo med din kod
 - Du ska också boka in 15 min med Anas för att demonstrera att programet, fungerar via skärmdelning eller på plats
 
+
+## Database Design
+![alt text](https://cdn.discordapp.com/attachments/811686462184882177/1105105236709867552/UML_class.png)
+
 ## Nuget Packages Required
 * Microsoft.EntityFrameworkCore
 * Microsoft.EntityFrameworkCore.Design
