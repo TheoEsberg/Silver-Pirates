@@ -46,7 +46,7 @@ För att kunna få VG ska du:
 
 
 ## Database Design
-![alt text](https://cdn.discordapp.com/attachments/811686462184882177/1105105236709867552/UML_class.png)
+![alt text](https://user-images.githubusercontent.com/113690228/236836776-7f4f39dc-77bc-4d21-8896-832ad0c80737.png)
 
 ## Nuget Packages Required
 * Microsoft.EntityFrameworkCore
@@ -54,9 +54,11 @@ För att kunna få VG ska du:
 * Microsoft.EntityFrameworkCore.SqlServer
 * Microsoft.EntityFrameworkCore.Tools
 
-Code to Inject for nuget packages: 
+## Code to Inject for nuget packages: 
+```
 NuGet\Install-Package Microsoft.EntityFrameworkCore -Version 7.0.5 
 NuGet\Install-Package Microsoft.EntityFrameworkCore.Design -Version 7.0.5 
 NuGet\Install-Package Microsoft.EntityFrameworkCore.Tools -Version 7.0.5 
 NuGet\Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 7.0.5
+```
 
