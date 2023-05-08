@@ -11,19 +11,35 @@ namespace Silver_Pirates.Services {
         }
 
         public HourReport Add(HourReport newEntity) {
-            throw new NotImplementedException();
+            if (newEntity != null)
+            {
+                _appDbContext.HourReports.Add(newEntity);
+                _appDbContext.SaveChanges();
+                return newEntity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public HourReport Delete(int id) {
-            throw new NotImplementedException();
+            var res = GetSingle(id);
+            if (res != null)
+            {
+                _appDbContext.HourReports.Remove(res);
+                _appDbContext.SaveChanges();
+                return res;
+            }
+            return null;
         }
 
         public IEnumerable<HourReport> GetAll() {
-            throw new NotImplementedException();
+            return _appDbContext.HourReports;
         }
 
         public HourReport GetSingle(int id) {
-            throw new NotImplementedException();
+            return _appDbContext.HourReports.FirstOrDefault(e => e.ReportId == id);
         }
 
         public HourReport Update(HourReport entity) {

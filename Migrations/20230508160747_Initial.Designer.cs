@@ -12,8 +12,8 @@ using Silver_Pirates.Models;
 namespace Silver_Pirates.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230508140800_Added-Connection")]
-    partial class AddedConnection
+    [Migration("20230508160747_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace Silver_Pirates.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("EmployeeProject", b =>
-                {
-                    b.Property<int>("EmployeesEmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectsProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeesEmployeeId", "ProjectsProjectId");
-
-                    b.HasIndex("ProjectsProjectId");
-
-                    b.ToTable("EmployeeProject");
-                });
 
             modelBuilder.Entity("Silver_Pirates_API.Employee", b =>
                 {
@@ -93,7 +78,7 @@ namespace Silver_Pirates.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("EmplyeeProject");
+                    b.ToTable("EmployeeProjects");
 
                     b.HasData(
                         new
@@ -152,37 +137,37 @@ namespace Silver_Pirates.Migrations
                         new
                         {
                             ReportId = 1,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9410),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4905),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 2,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9474),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4946),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 3,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9480),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4951),
                             EmployeeId = 3
                         },
                         new
                         {
                             ReportId = 4,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9486),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4956),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 5,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9492),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4961),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 6,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 8, 0, 560, DateTimeKind.Local).AddTicks(9500),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4966),
                             EmployeeId = 3
                         });
                 });
@@ -226,31 +211,16 @@ namespace Silver_Pirates.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EmployeeProject", b =>
-                {
-                    b.HasOne("Silver_Pirates_API.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesEmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Silver_Pirates_API.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectsProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Silver_Pirates_API.EmployeeProject", b =>
                 {
                     b.HasOne("Silver_Pirates_API.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("EmployeeProjects")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Silver_Pirates_API.Project", "Project")
-                        .WithMany()
+                        .WithMany("EmployeeProjects")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -273,7 +243,14 @@ namespace Silver_Pirates.Migrations
 
             modelBuilder.Entity("Silver_Pirates_API.Employee", b =>
                 {
+                    b.Navigation("EmployeeProjects");
+
                     b.Navigation("Hours");
+                });
+
+            modelBuilder.Entity("Silver_Pirates_API.Project", b =>
+                {
+                    b.Navigation("EmployeeProjects");
                 });
 #pragma warning restore 612, 618
         }

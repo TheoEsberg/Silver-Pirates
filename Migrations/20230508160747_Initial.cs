@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Silver_Pirates.Migrations
 {
     /// <inheritdoc />
-    public partial class InitMigrationTheo : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace Silver_Pirates.Migrations
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,24 +60,26 @@ namespace Silver_Pirates.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeProject",
+                name: "EmployeeProjects",
                 columns: table => new
                 {
-                    EmployeesEmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ProjectsProjectId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeProject", x => new { x.EmployeesEmployeeId, x.ProjectsProjectId });
+                    table.PrimaryKey("PK_EmployeeProjects", x => x.EmployeeProjectId);
                     table.ForeignKey(
-                        name: "FK_EmployeeProject_Employees_EmployeesEmployeeId",
-                        column: x => x.EmployeesEmployeeId,
+                        name: "FK_EmployeeProjects_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeProject_Projects_ProjectsProjectId",
-                        column: x => x.ProjectsProjectId,
+                        name: "FK_EmployeeProjects_Projects_ProjectId",
+                        column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "ProjectId",
                         onDelete: ReferentialAction.Cascade);
@@ -90,7 +92,7 @@ namespace Silver_Pirates.Migrations
                 {
                     { 1, "Emil" },
                     { 2, "Theo" },
-                    { 3, "Emil" }
+                    { 3, "Lucas" }
                 });
 
             migrationBuilder.InsertData(
@@ -105,22 +107,39 @@ namespace Silver_Pirates.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "EmployeeProjects",
+                columns: new[] { "EmployeeProjectId", "EmployeeId", "ProjectId" },
+                values: new object[,]
+                {
+                    { 1, 1, 2 },
+                    { 2, 1, 4 },
+                    { 3, 2, 2 },
+                    { 4, 3, 1 },
+                    { 5, 3, 3 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "HourReports",
                 columns: new[] { "ReportId", "DateWorked", "EmployeeId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 5, 1, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3404), 1 },
-                    { 2, new DateTime(2023, 5, 1, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3461), 2 },
-                    { 3, new DateTime(2023, 5, 1, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3467), 3 },
-                    { 4, new DateTime(2023, 5, 9, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3473), 1 },
-                    { 5, new DateTime(2023, 5, 9, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3479), 2 },
-                    { 6, new DateTime(2023, 5, 9, 15, 30, 33, 336, DateTimeKind.Local).AddTicks(3487), 3 }
+                    { 1, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4905), 1 },
+                    { 2, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4946), 2 },
+                    { 3, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4951), 3 },
+                    { 4, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4956), 1 },
+                    { 5, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4961), 2 },
+                    { 6, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4966), 3 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeProject_ProjectsProjectId",
-                table: "EmployeeProject",
-                column: "ProjectsProjectId");
+                name: "IX_EmployeeProjects_EmployeeId",
+                table: "EmployeeProjects",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProjects_ProjectId",
+                table: "EmployeeProjects",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HourReports_EmployeeId",
@@ -132,7 +151,7 @@ namespace Silver_Pirates.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EmployeeProject");
+                name: "EmployeeProjects");
 
             migrationBuilder.DropTable(
                 name: "HourReports");
