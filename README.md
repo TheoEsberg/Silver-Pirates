@@ -2,8 +2,7 @@
 
 # Vad du ska göra
 
-- [ ]  Skapa systemet som två projekt i samma solution
-    
+- [x]  Skapa systemet som två projekt i samma solution
     (ett projekt för modells som ClassLibrary och det andra som REST-API och som har första projekt som reference)
     
 - [ ]  Du behöver minst tre modells (Employee, Project och TimReport)
