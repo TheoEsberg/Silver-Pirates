@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Silver_Pirates_API
 {
-    internal class Employee
+    public class Employee
     {
         [Key]
         public int EmployeeId { get; set; }

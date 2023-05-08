@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Silver_Pirates_API
 {
-    internal class Project
+    public class Project
     {
         [Key]
         public int ProjectId { get; set; }
