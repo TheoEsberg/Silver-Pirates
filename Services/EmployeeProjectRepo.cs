@@ -17,10 +17,7 @@ namespace Silver_Pirates.Services {
                 _appDbContext.SaveChanges();
                 return newEntity;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public EmployeeProject Delete(int id)

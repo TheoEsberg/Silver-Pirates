@@ -14,10 +14,20 @@ namespace Silver_Pirates.Controllers
         {
             this._project = project;
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_project.GetAll());
+        }
+
+        [HttpGet("ProjectId")]
+        public IActionResult GetEmployee(int id) {
+            var res = _project.GetSingle(id);
+            if (res != null)
+                return Ok(res);
+
+            return NotFound($"Employee with {id} was not found...");
         }
     }
 }
