@@ -21,7 +21,7 @@ namespace Silver_Pirates.Controllers
             return Ok(_employee.GetAll());
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("/GetEmployee/id{id:int}")]
         public IActionResult GetEmployee(int id) {
 
             var res = _employee.GetSingle(id);
@@ -34,7 +34,7 @@ namespace Silver_Pirates.Controllers
 
         //WIll probably be changed in the future
         // since it only changes the name atm
-        [HttpPut("{id:int}/{name}")]
+        [HttpPut("/UpdateNameOfEmployee/id{id:int}/{name}")]
         public IActionResult UpdateEmployee(int id, string name) {
 
             var res = _employee.GetSingle(id);
@@ -67,7 +67,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("/DeleteEmployee/id{id:int}")]
         public IActionResult DeleteEmployee(int id) {
 
             var res = _employee.GetSingle(id);
