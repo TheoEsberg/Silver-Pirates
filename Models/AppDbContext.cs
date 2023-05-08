@@ -38,18 +38,22 @@ namespace Silver_Pirates.Models {
             //Projects
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 1,
+                Name = "Astro Alpha",
                 Employees = new List<Employee>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 2,
+                Name = "Apollo Sucide",
                 Employees = new List<Employee>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 3,
+                Name = "Banana Basher",
                 Employees = new List<Employee>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 4,
+                Name = "Granny Monster",
                 Employees = new List<Employee>()
             });
 

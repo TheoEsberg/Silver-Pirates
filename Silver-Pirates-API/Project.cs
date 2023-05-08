@@ -11,6 +11,8 @@ namespace Silver_Pirates_API
     {
         [Key]
         public int ProjectId { get; set; }
+        [Required]
+        public string Name { get; set; }
         public ICollection<Employee> Employees { get; set; }
     }
 }
