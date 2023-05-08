@@ -30,7 +30,7 @@ namespace Silver_Pirates.Models {
             });
             modelBuilder.Entity<Employee>().HasData(new Employee {
                 EmployeeId = 3,
-                Name = "Emil",
+                Name = "Lucas",
                 Projects = new List<Project>(),
                 Hours = new List<HourReport>()
             });
@@ -90,9 +90,6 @@ namespace Silver_Pirates.Models {
                 EmployeeId = 3,
                 DateWorked = DateTime.Now.AddDays(1),
             });
-
         }
-
     }
-
 }
