@@ -1,5 +1,7 @@
-﻿using Silver_Pirates.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Silver_Pirates.Models;
 using Silver_Pirates_API;
+using System.Collections;
 
 namespace Silver_Pirates.Services {
 
@@ -41,6 +43,18 @@ namespace Silver_Pirates.Services {
 
         public HourReport Update(HourReport entity) {
             throw new NotImplementedException();
+        }
+
+        // GetAllHourReportsFromEmployee
+        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployee(int id)
+        {
+            var result = await _appDbContext.HourReports.Where(e => e.EmployeeId == id).ToListAsync();
+            return result ?? null;
+        }
+
+        IEnumerable<HourReport> IHourReport<HourReport>.GetAllHourReportsFromEmployee(int id)
+        {
+            return GetAllHourReportsFromEmployee(id).GetAwaiter().GetResult();
         }
     }
 

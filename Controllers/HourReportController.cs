@@ -29,5 +29,16 @@ namespace Silver_Pirates.Controllers
 
             return NotFound($"Hour Report with {id} was not found...");
         }
+
+        [HttpGet("/EmployeeHourReport/id{id:int}")]
+        public IActionResult GetAllHourReportsById(int id)
+        {
+            var res = _hourReport.GetAllHourReportsFromEmployee(id);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return NotFound($"Employee with {id} was not found...");
+        }
     }
 }

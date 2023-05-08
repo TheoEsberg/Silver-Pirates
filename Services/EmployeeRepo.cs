@@ -32,7 +32,6 @@ namespace Silver_Pirates.Services {
                 return res;
             }
             return null;
-
         }
 
         public IEnumerable<Employee> GetAll() {
@@ -52,6 +51,7 @@ namespace Silver_Pirates.Services {
             var employee = _appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == entity.EmployeeId);
             if (employee != null) {
                 employee.Name = entity.Name;
+                _appDbContext.SaveChangesAsync();
                 return employee;
             } else {
                 return null;
