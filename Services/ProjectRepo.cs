@@ -11,19 +11,35 @@ namespace Silver_Pirates.Services {
         }
 
         public Project Add(Project newEntity) {
-            throw new NotImplementedException();
+            if (newEntity != null)
+            {
+                _appDbContext.Projects.Add(newEntity);
+                _appDbContext.SaveChanges();
+                return newEntity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Project Delete(int id) {
-            throw new NotImplementedException();
+            var res = GetSingle(id);
+            if (res != null)
+            {
+                _appDbContext.Projects.Remove(res);
+                _appDbContext.SaveChanges();
+                return res;
+            }
+            return null;
         }
 
         public IEnumerable<Project> GetAll() {
-            throw new NotImplementedException();
+            return _appDbContext.Projects;
         }
 
         public Project GetSingle(int id) {
-            throw new NotImplementedException();
+            return _appDbContext.Projects.FirstOrDefault(e => e.ProjectId == id);
         }
 
         public Project Update(Project entity) {

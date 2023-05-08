@@ -134,37 +134,37 @@ namespace Silver_Pirates.Migrations
                         new
                         {
                             ReportId = 1,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2526),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4905),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 2,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2573),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4946),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 3,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2579),
+                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4951),
                             EmployeeId = 3
                         },
                         new
                         {
                             ReportId = 4,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2585),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4956),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 5,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2592),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4961),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 6,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2600),
+                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4966),
                             EmployeeId = 3
                         });
                 });
