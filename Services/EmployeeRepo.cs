@@ -18,10 +18,8 @@ namespace Silver_Pirates.Services {
                 _appDbContext.Employees.Add(newEntity);
                 _appDbContext.SaveChanges();
                 return newEntity;
-            } else {
-                return null;
-            }
-
+            } 
+            return null;
         }
 
         public Employee Delete(int id) {
