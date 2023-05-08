@@ -13,6 +13,6 @@ namespace Silver_Pirates_API
         public int ProjectId { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<Employee> Employees { get; set; }
+        public ICollection<EmployeeProject> EmployeeProjects { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Silver_Pirates.Models;
 
@@ -11,9 +12,11 @@ using Silver_Pirates.Models;
 namespace Silver_Pirates.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230508141055_Update-Connection")]
+    partial class UpdateConnection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace Silver_Pirates.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EmployeeProject", b =>
+                {
+                    b.Property<int>("EmployeesEmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectsProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeesEmployeeId", "ProjectsProjectId");
+
+                    b.HasIndex("ProjectsProjectId");
+
+                    b.ToTable("EmployeeProject");
+                });
 
             modelBuilder.Entity("Silver_Pirates_API.Employee", b =>
                 {
@@ -55,61 +73,6 @@ namespace Silver_Pirates.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Silver_Pirates_API.EmployeeProject", b =>
-                {
-                    b.Property<int>("EmployeeProjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeProjectId"));
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeProjectId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("EmployeeProjects");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeProjectId = 1,
-                            EmployeeId = 1,
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 2,
-                            EmployeeId = 1,
-                            ProjectId = 4
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 3,
-                            EmployeeId = 2,
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 4,
-                            EmployeeId = 3,
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 5,
-                            EmployeeId = 3,
-                            ProjectId = 3
-                        });
-                });
-
             modelBuilder.Entity("Silver_Pirates_API.HourReport", b =>
                 {
                     b.Property<int>("ReportId")
@@ -134,37 +97,37 @@ namespace Silver_Pirates.Migrations
                         new
                         {
                             ReportId = 1,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2526),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(2965),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 2,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2573),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(3012),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 3,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2579),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(3017),
                             EmployeeId = 3
                         },
                         new
                         {
                             ReportId = 4,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2585),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(3023),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 5,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2592),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(3052),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 6,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2600),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 10, 55, 151, DateTimeKind.Local).AddTicks(3060),
                             EmployeeId = 3
                         });
                 });
@@ -208,23 +171,19 @@ namespace Silver_Pirates.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Silver_Pirates_API.EmployeeProject", b =>
+            modelBuilder.Entity("EmployeeProject", b =>
                 {
-                    b.HasOne("Silver_Pirates_API.Employee", "Employee")
-                        .WithMany("EmployeeProjects")
-                        .HasForeignKey("EmployeeId")
+                    b.HasOne("Silver_Pirates_API.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeesEmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Silver_Pirates_API.Project", "Project")
-                        .WithMany("EmployeeProjects")
-                        .HasForeignKey("ProjectId")
+                    b.HasOne("Silver_Pirates_API.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Silver_Pirates_API.HourReport", b =>
@@ -240,14 +199,7 @@ namespace Silver_Pirates.Migrations
 
             modelBuilder.Entity("Silver_Pirates_API.Employee", b =>
                 {
-                    b.Navigation("EmployeeProjects");
-
                     b.Navigation("Hours");
-                });
-
-            modelBuilder.Entity("Silver_Pirates_API.Project", b =>
-                {
-                    b.Navigation("EmployeeProjects");
                 });
 #pragma warning restore 612, 618
         }

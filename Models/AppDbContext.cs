@@ -12,6 +12,8 @@ namespace Silver_Pirates.Models {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<HourReport> HourReports { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
@@ -19,19 +21,19 @@ namespace Silver_Pirates.Models {
             modelBuilder.Entity<Employee>().HasData(new Employee {
                 EmployeeId = 1,
                 Name = "Emil",
-                Projects = new List<Project>(),
+                EmployeeProjects = new List<EmployeeProject>(),
                 Hours = new List<HourReport>()
             });
             modelBuilder.Entity<Employee>().HasData(new Employee {
                 EmployeeId = 2,
                 Name = "Theo",
-                Projects = new List<Project>(),
+                EmployeeProjects = new List<EmployeeProject>(),
                 Hours = new List<HourReport>()
             });
             modelBuilder.Entity<Employee>().HasData(new Employee {
                 EmployeeId = 3,
                 Name = "Lucas",
-                Projects = new List<Project>(),
+                EmployeeProjects = new List<EmployeeProject>(),
                 Hours = new List<HourReport>()
             });
 
@@ -39,22 +41,22 @@ namespace Silver_Pirates.Models {
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 1,
                 Name = "Astro Alpha",
-                Employees = new List<Employee>()
+                EmployeeProjects = new List<EmployeeProject>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 2,
                 Name = "Apollo Sucide",
-                Employees = new List<Employee>()
+                EmployeeProjects = new List<EmployeeProject>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 3,
                 Name = "Banana Basher",
-                Employees = new List<Employee>()
+                EmployeeProjects = new List<EmployeeProject>()
             });
             modelBuilder.Entity<Project>().HasData(new Project {
                 ProjectId = 4,
                 Name = "Granny Monster",
-                Employees = new List<Employee>()
+                EmployeeProjects = new List<EmployeeProject>()
             });
 
             //Hour reports
@@ -90,6 +92,16 @@ namespace Silver_Pirates.Models {
                 EmployeeId = 3,
                 DateWorked = DateTime.Now.AddDays(1),
             });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject { EmployeeProjectId = 1, EmployeeId = 1, ProjectId = 2 },
+                new EmployeeProject { EmployeeProjectId = 2, EmployeeId = 1, ProjectId = 4 },
+                new EmployeeProject { EmployeeProjectId = 3, EmployeeId = 2, ProjectId = 2 },
+                new EmployeeProject { EmployeeProjectId = 4, EmployeeId = 3, ProjectId = 1 },
+                new EmployeeProject { EmployeeProjectId = 5, EmployeeId = 3, ProjectId = 3 }
+            );
+
+
         }
     }
 }

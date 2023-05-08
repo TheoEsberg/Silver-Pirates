@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Silver_Pirates.Models;
 
@@ -11,9 +12,11 @@ using Silver_Pirates.Models;
 namespace Silver_Pirates.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230508141845_AddEmployeeProjectForeignKey")]
+    partial class AddEmployeeProjectForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,38 +79,6 @@ namespace Silver_Pirates.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("EmployeeProjects");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeProjectId = 1,
-                            EmployeeId = 1,
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 2,
-                            EmployeeId = 1,
-                            ProjectId = 4
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 3,
-                            EmployeeId = 2,
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 4,
-                            EmployeeId = 3,
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            EmployeeProjectId = 5,
-                            EmployeeId = 3,
-                            ProjectId = 3
-                        });
                 });
 
             modelBuilder.Entity("Silver_Pirates_API.HourReport", b =>
@@ -134,37 +105,37 @@ namespace Silver_Pirates.Migrations
                         new
                         {
                             ReportId = 1,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2526),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9407),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 2,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2573),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9455),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 3,
-                            DateWorked = new DateTime(2023, 5, 1, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2579),
+                            DateWorked = new DateTime(2023, 5, 1, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9461),
                             EmployeeId = 3
                         },
                         new
                         {
                             ReportId = 4,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2585),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9467),
                             EmployeeId = 1
                         },
                         new
                         {
                             ReportId = 5,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2592),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9473),
                             EmployeeId = 2
                         },
                         new
                         {
                             ReportId = 6,
-                            DateWorked = new DateTime(2023, 5, 9, 16, 20, 43, 830, DateTimeKind.Local).AddTicks(2600),
+                            DateWorked = new DateTime(2023, 5, 9, 16, 18, 45, 694, DateTimeKind.Local).AddTicks(9480),
                             EmployeeId = 3
                         });
                 });
