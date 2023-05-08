@@ -14,85 +14,33 @@ namespace Silver_Pirates.Models {
         public DbSet<Project> Projects { get; set; }
         public DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             //Employee
-            modelBuilder.Entity<Employee>().HasData(new Employee {
-                EmployeeId = 1,
-                Name = "Emil",
-                EmployeeProjects = new List<EmployeeProject>(),
-                Hours = new List<HourReport>()
-            });
-            modelBuilder.Entity<Employee>().HasData(new Employee {
-                EmployeeId = 2,
-                Name = "Theo",
-                EmployeeProjects = new List<EmployeeProject>(),
-                Hours = new List<HourReport>()
-            });
-            modelBuilder.Entity<Employee>().HasData(new Employee {
-                EmployeeId = 3,
-                Name = "Lucas",
-                EmployeeProjects = new List<EmployeeProject>(),
-                Hours = new List<HourReport>()
-            });
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee { EmployeeId = 1, Name = "Emil", EmployeeProjects = new List<EmployeeProject>(), Hours = new List<HourReport>() },
+                new Employee { EmployeeId = 2, Name = "Theo", EmployeeProjects = new List<EmployeeProject>(), Hours = new List<HourReport>() },
+                new Employee { EmployeeId = 3, Name = "Lucas", EmployeeProjects = new List<EmployeeProject>(), Hours = new List<HourReport>() }
+            );
 
             //Projects
-            modelBuilder.Entity<Project>().HasData(new Project {
-                ProjectId = 1,
-                Name = "Astro Alpha",
-                EmployeeProjects = new List<EmployeeProject>()
-            });
-            modelBuilder.Entity<Project>().HasData(new Project {
-                ProjectId = 2,
-                Name = "Apollo Sucide",
-                EmployeeProjects = new List<EmployeeProject>()
-            });
-            modelBuilder.Entity<Project>().HasData(new Project {
-                ProjectId = 3,
-                Name = "Banana Basher",
-                EmployeeProjects = new List<EmployeeProject>()
-            });
-            modelBuilder.Entity<Project>().HasData(new Project {
-                ProjectId = 4,
-                Name = "Granny Monster",
-                EmployeeProjects = new List<EmployeeProject>()
-            });
+            modelBuilder.Entity<Project>().HasData(
+                new Project { ProjectId = 1, Name = "Astro Alpha", EmployeeProjects = new List<EmployeeProject>() },
+                new Project { ProjectId = 2, Name = "Apollo Sucide", EmployeeProjects = new List<EmployeeProject>() },
+                new Project { ProjectId = 3, Name = "Banana Basher", EmployeeProjects = new List<EmployeeProject>() },
+                new Project { ProjectId = 4, Name = "Granny Monster", EmployeeProjects = new List<EmployeeProject>() }
+            );
 
             //Hour reports
-            // week 1
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 1,
-                EmployeeId = 1,
-                DateWorked = DateTime.Now.AddDays(-7),
-            });
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 2,
-                EmployeeId = 2,
-                DateWorked = DateTime.Now.AddDays(-7),
-            });
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 3,
-                EmployeeId = 3,
-                DateWorked = DateTime.Now.AddDays(-7),
-            });
-            // week 2
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 4,
-                EmployeeId = 1,
-                DateWorked = DateTime.Now.AddDays(1),
-            });
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 5,
-                EmployeeId = 2,
-                DateWorked = DateTime.Now.AddDays(1),
-            });
-            modelBuilder.Entity<HourReport>().HasData(new HourReport {
-                ReportId = 6,
-                EmployeeId = 3,
-                DateWorked = DateTime.Now.AddDays(1),
-            });
-
+            modelBuilder.Entity<HourReport>().HasData(
+                new HourReport { ReportId = 1, EmployeeId = 1, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 2, EmployeeId = 2, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 3, EmployeeId = 3, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 4, EmployeeId = 1, DateWorked = DateTime.Now.AddMinutes(-30) },
+                new HourReport { ReportId = 5, EmployeeId = 2, DateWorked = DateTime.Now.AddMinutes(-30) },
+                new HourReport { ReportId = 6, EmployeeId = 3, DateWorked = DateTime.Now.AddMinutes(-30) }
+            );
+           
             modelBuilder.Entity<EmployeeProject>().HasData(
                 new EmployeeProject { EmployeeProjectId = 1, EmployeeId = 1, ProjectId = 2 },
                 new EmployeeProject { EmployeeProjectId = 2, EmployeeId = 1, ProjectId = 4 },
