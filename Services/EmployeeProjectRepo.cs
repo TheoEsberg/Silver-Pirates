@@ -1,4 +1,5 @@
-﻿using Silver_Pirates.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Silver_Pirates.Models;
 using Silver_Pirates_API;
 
 namespace Silver_Pirates.Services {
@@ -9,40 +10,40 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
-        public EmployeeProject Add(EmployeeProject newEntity)
+        public async Task<EmployeeProject> Add(EmployeeProject newEntity)
         {
             if (newEntity != null)
             {
-                _appDbContext.EmployeeProjects.Add(newEntity);
-                _appDbContext.SaveChanges();
+                await _appDbContext.AddAsync(newEntity);
+                await _appDbContext.SaveChangesAsync();
                 return newEntity;
             }
             return null;
         }
 
-        public EmployeeProject Delete(int id)
+        public async Task<EmployeeProject> Delete(int id)
         {
-            var res = GetSingle(id);
-            if (res != null)
+            var result = await GetSingle(id);
+            if (result != null)
             {
-                _appDbContext.EmployeeProjects.Remove(res);
-                _appDbContext.SaveChanges();
-                return res;
+                _appDbContext.Remove(result);
+                await _appDbContext.SaveChangesAsync();
+                return result;
             }
             return null;
         }
 
-        public IEnumerable<EmployeeProject> GetAll()
+        public async Task<IEnumerable<EmployeeProject>> GetAll()
         {
-            return _appDbContext.EmployeeProjects;
+            return await _appDbContext.EmployeeProjects.ToListAsync();
         }
 
-        public EmployeeProject GetSingle(int id)
+        public async Task<EmployeeProject> GetSingle(int id)
         {
-            return _appDbContext.EmployeeProjects.FirstOrDefault(e => e.EmployeeProjectId == id);
+            return await _appDbContext.EmployeeProjects.FirstOrDefaultAsync(e => e.EmployeeProjectId == 1);
         }
 
-        public EmployeeProject Update(EmployeeProject entity)
+        public async Task<EmployeeProject> Update(EmployeeProject entity)
         {
             throw new NotImplementedException();
         }

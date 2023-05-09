@@ -12,49 +12,48 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
-        public HourReport Add(HourReport newEntity) {
-            if (newEntity != null)
-            {
-                _appDbContext.HourReports.Add(newEntity);
-                _appDbContext.SaveChanges();
-                return newEntity;
-            }
-            return null;
-        }
-
-        public HourReport Delete(int id) {
-            var res = GetSingle(id);
-            if (res != null)
-            {
-                _appDbContext.HourReports.Remove(res);
-                _appDbContext.SaveChanges();
-                return res;
-            }
-            return null;
-        }
-
-        public IEnumerable<HourReport> GetAll() {
-            return _appDbContext.HourReports;
-        }
-
-        public HourReport GetSingle(int id) {
-            return _appDbContext.HourReports.FirstOrDefault(e => e.ReportId == id);
-        }
-
-        public HourReport Update(HourReport entity) {
-            throw new NotImplementedException();
-        }
-
-        // GetAllHourReportsFromEmployee
         public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployee(int id)
         {
             var result = await _appDbContext.HourReports.Where(e => e.EmployeeId == id).ToListAsync();
             return result ?? null;
         }
 
-        IEnumerable<HourReport> IHourReport<HourReport>.GetAllHourReportsFromEmployee(int id)
+        public async Task<IEnumerable<HourReport>> GetAll()
         {
-            return GetAllHourReportsFromEmployee(id).GetAwaiter().GetResult();
+            return await _appDbContext.HourReports.ToListAsync();
+        }
+
+        public async Task<HourReport> GetSingle(int id)
+        {
+            return await _appDbContext.HourReports.FirstOrDefaultAsync(p => p.ReportId == id);
+        }
+
+        public async Task<HourReport> Add(HourReport newEntity)
+        {
+            if (newEntity != null)
+            {
+                await _appDbContext.HourReports.AddAsync(newEntity);
+                await _appDbContext.SaveChangesAsync();
+                return newEntity;
+            }
+            return null;
+        }
+
+        public async Task<HourReport> Update(HourReport entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<HourReport> Delete(int id)
+        {
+            var result = await GetSingle(id);
+            if (result != null)
+            {
+                _appDbContext.Remove(result);
+                await _appDbContext.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
     }
 

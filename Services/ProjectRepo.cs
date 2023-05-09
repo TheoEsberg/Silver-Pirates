@@ -1,4 +1,5 @@
-﻿using Silver_Pirates.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Silver_Pirates.Models;
 using Silver_Pirates_API;
 
 namespace Silver_Pirates.Services {
@@ -10,36 +11,35 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
-        public Project Add(Project newEntity) {
+        public async Task<Project> Add(Project newEntity)
+        {
             if (newEntity != null)
             {
-                _appDbContext.Projects.Add(newEntity);
-                _appDbContext.SaveChanges();
+                await _appDbContext.Projects.AddAsync(newEntity);
+                await _appDbContext.SaveChangesAsync();
                 return newEntity;
-            }
-            return null;          
-        }
-
-        public Project Delete(int id) {
-            var res = GetSingle(id);
-            if (res != null)
-            {
-                _appDbContext.Projects.Remove(res);
-                _appDbContext.SaveChanges();
-                return res;
             }
             return null;
         }
 
-        public IEnumerable<Project> GetAll() {
-            return _appDbContext.Projects;
+        public async Task<Project> Delete(int id)
+        {
+            var result = await GetSingle(id);
+            throw new NotImplementedException();
         }
 
-        public Project GetSingle(int id) {
-            return _appDbContext.Projects.FirstOrDefault(e => e.ProjectId == id);
+        public async Task<IEnumerable<Project>> GetAll()
+        {
+            return await _appDbContext.Projects.ToListAsync();
         }
 
-        public Project Update(Project entity) {
+        public async Task<Project> GetSingle(int id)
+        {
+            return await _appDbContext.Projects.FirstOrDefaultAsync(e => e.ProjectId == id);
+        }
+
+        public async Task<Project> Update(Project entity)
+        {
             throw new NotImplementedException();
         }
     }

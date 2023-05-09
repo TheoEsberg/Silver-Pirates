@@ -2,12 +2,11 @@
 
     public interface IEmployee<T> {
 
-        public IEnumerable<T> GetAll();
-        public T GetSingle(int id);
-        public T Add(T newEntity);
-        public T Update(T entity);
-        public T Delete(int id);
-
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetSingle(int id);
+        Task<T> Add(T newEntity);
+        Task<T> Update(T entity);
+        Task<T> Delete(int id);
     }
 
 }
