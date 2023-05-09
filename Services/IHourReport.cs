@@ -10,7 +10,7 @@ namespace Silver_Pirates.Services {
         Task<T> Update(T entity);
         Task<T> Delete(int id);
         Task<IEnumerable<T>> GetAllHourReportsFromEmployee(int id);
-        Task<IEnumerable<T>> GetAllHourReportsFromEmployeeByWeek(int id, int week);
+        Task<double> GetAllHourReportsFromEmployeeByWeek(int id, int week);
     }
 
 }

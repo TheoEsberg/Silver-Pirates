@@ -12,8 +12,8 @@ using Silver_Pirates.Models;
 namespace Silver_Pirates.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230508160747_Initial")]
-    partial class Initial
+    [Migration("20230509114228_AddHoursWorked-Fixed")]
+    partial class AddHoursWorkedFixed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,9 @@ namespace Silver_Pirates.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<double>("HoursWorked")
+                        .HasColumnType("float");
+
                     b.HasKey("ReportId");
 
                     b.HasIndex("EmployeeId");
@@ -137,38 +140,44 @@ namespace Silver_Pirates.Migrations
                         new
                         {
                             ReportId = 1,
-                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4905),
-                            EmployeeId = 1
+                            DateWorked = new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1715),
+                            EmployeeId = 1,
+                            HoursWorked = 4.5999999999999996
                         },
                         new
                         {
                             ReportId = 2,
-                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4946),
-                            EmployeeId = 2
+                            DateWorked = new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1746),
+                            EmployeeId = 2,
+                            HoursWorked = 7.9000000000000004
                         },
                         new
                         {
                             ReportId = 3,
-                            DateWorked = new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4951),
-                            EmployeeId = 3
+                            DateWorked = new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1748),
+                            EmployeeId = 3,
+                            HoursWorked = 9.0
                         },
                         new
                         {
                             ReportId = 4,
-                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4956),
-                            EmployeeId = 1
+                            DateWorked = new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1749),
+                            EmployeeId = 1,
+                            HoursWorked = 7.2999999999999998
                         },
                         new
                         {
                             ReportId = 5,
-                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4961),
-                            EmployeeId = 2
+                            DateWorked = new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1751),
+                            EmployeeId = 2,
+                            HoursWorked = 2.7999999999999998
                         },
                         new
                         {
                             ReportId = 6,
-                            DateWorked = new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4966),
-                            EmployeeId = 3
+                            DateWorked = new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1752),
+                            EmployeeId = 3,
+                            HoursWorked = 12.199999999999999
                         });
                 });
 

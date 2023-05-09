@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Silver_Pirates.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class AddHoursWorkedFixed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,6 +45,7 @@ namespace Silver_Pirates.Migrations
                 {
                     ReportId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    HoursWorked = table.Column<double>(type: "float", nullable: false),
                     DateWorked = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -120,15 +121,15 @@ namespace Silver_Pirates.Migrations
 
             migrationBuilder.InsertData(
                 table: "HourReports",
-                columns: new[] { "ReportId", "DateWorked", "EmployeeId" },
+                columns: new[] { "ReportId", "DateWorked", "EmployeeId", "HoursWorked" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4905), 1 },
-                    { 2, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4946), 2 },
-                    { 3, new DateTime(2023, 5, 1, 18, 7, 47, 221, DateTimeKind.Local).AddTicks(4951), 3 },
-                    { 4, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4956), 1 },
-                    { 5, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4961), 2 },
-                    { 6, new DateTime(2023, 5, 8, 17, 37, 47, 221, DateTimeKind.Local).AddTicks(4966), 3 }
+                    { 1, new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1715), 1, 4.5999999999999996 },
+                    { 2, new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1746), 2, 7.9000000000000004 },
+                    { 3, new DateTime(2023, 5, 2, 13, 42, 28, 473, DateTimeKind.Local).AddTicks(1748), 3, 9.0 },
+                    { 4, new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1749), 1, 7.2999999999999998 },
+                    { 5, new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1751), 2, 2.7999999999999998 },
+                    { 6, new DateTime(2023, 5, 9, 13, 12, 28, 473, DateTimeKind.Local).AddTicks(1752), 3, 12.199999999999999 }
                 });
 
             migrationBuilder.CreateIndex(

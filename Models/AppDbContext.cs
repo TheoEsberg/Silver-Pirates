@@ -33,12 +33,12 @@ namespace Silver_Pirates.Models {
 
             //Hour reports
             modelBuilder.Entity<HourReport>().HasData(
-                new HourReport { ReportId = 1, EmployeeId = 1, DateWorked = DateTime.Now.AddDays(-7) },
-                new HourReport { ReportId = 2, EmployeeId = 2, DateWorked = DateTime.Now.AddDays(-7) },
-                new HourReport { ReportId = 3, EmployeeId = 3, DateWorked = DateTime.Now.AddDays(-7) },
-                new HourReport { ReportId = 4, EmployeeId = 1, DateWorked = DateTime.Now.AddMinutes(-30) },
-                new HourReport { ReportId = 5, EmployeeId = 2, DateWorked = DateTime.Now.AddMinutes(-30) },
-                new HourReport { ReportId = 6, EmployeeId = 3, DateWorked = DateTime.Now.AddMinutes(-30) }
+                new HourReport { ReportId = 1, EmployeeId = 1, HoursWorked = 4.6, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 2, EmployeeId = 2, HoursWorked = 7.9, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 3, EmployeeId = 3, HoursWorked = 9.0, DateWorked = DateTime.Now.AddDays(-7) },
+                new HourReport { ReportId = 4, EmployeeId = 1, HoursWorked = 7.3, DateWorked = DateTime.Now.AddMinutes(-30) },
+                new HourReport { ReportId = 5, EmployeeId = 2, HoursWorked = 2.8, DateWorked = DateTime.Now.AddMinutes(-30) },
+                new HourReport { ReportId = 6, EmployeeId = 3, HoursWorked = 12.2, DateWorked = DateTime.Now.AddMinutes(-30) }
             );
            
             modelBuilder.Entity<EmployeeProject>().HasData(
