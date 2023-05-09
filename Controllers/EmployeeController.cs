@@ -78,7 +78,15 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Employee with Id : {id} was not found...");
 
         }
-
-
+        [HttpGet("/GetEmployeesForProject/id{id:int}")]
+        public async Task<IActionResult> GetEmployeesForProject(int id)
+        {
+            var res = await _employee.GetEmployeesForProject(id);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return NotFound($"A project with the Id : {id} did not have any employees working on it");
+        }
     }
 }

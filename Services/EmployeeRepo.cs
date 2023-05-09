@@ -40,6 +40,18 @@ namespace Silver_Pirates.Services {
         {
             return await _appDbContext.Employees.ToListAsync();
         }
+        public async Task<IEnumerable<Employee>> GetEmployeesForProject(int id)
+        {
+            var result = await _appDbContext.EmployeeProjects.Where(p => p.ProjectId == id).Select(e => e.Employee).ToListAsync();
+            if (result.Count()>0)
+            {
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public async Task<Employee> GetSingle(int id)
         {
