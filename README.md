@@ -6,20 +6,20 @@ This is a group project in the [Advanced .NET](https://qlok.notion.site/6-Avance
 - [What it is about](#what-it-is-about) 
 - [Todo List](#todo-list) 
 - [Database Design](#database-design) 
--- [UML](#uml) 
--- [Employee](#employee) 
--- [Project](#project) 
--- [HourReport](#hourreport) 
--- [EmployeeProject](#employeeproject) 
+- - [UML](#uml) 
+- - [Employee](#employee) 
+- - [Project](#project) 
+- - [HourReport](#hourreport) 
+- - [EmployeeProject](#employeeproject) 
 - [DbContext](#dbcontext)
 - [API Calls from Postman](#api-calls-from-postman)
---[Employee API Calls](#employee-api-calls)
---[Project API Calls](#project-api-calls)
---[Hour Report API Calls](#hour-report-api-calls)
+- - [Employee API Calls](#employee-api-calls)
+- - [Project API Calls](#project-api-calls)
+- - [Hour Report API Calls](#hour-report-api-calls)
 - [Contributors](#contributors)
 - [NuGet Packages](#nuget-packages)
--- [Required NuGet Packages](#required-nuget-packages)
--- [Code to Inject NuGet Packages](#code-to-inject-nuget-packages)
+- - [Required NuGet Packages](#required-nuget-packages)
+- - [Code to Inject NuGet Packages](#code-to-inject-nuget-packages)
 
 ## What it is about
 The goal with this group project is to create a REST API with a database, fulfill the [criterias](https://qlok.notion.site/Projekt-Avancerad-NET-3017bd886c2646dda6e6424bd8f01cec) for the API and test our API with [Swagger](https://swagger.io/) and [Postman](https://www.postman.com/).
@@ -50,14 +50,17 @@ Our database is constructed with three main tables and one connection table. The
 ![UML of our database](https://user-images.githubusercontent.com/113690228/236836776-7f4f39dc-77bc-4d21-8896-832ad0c80737.png)
 ### Employee
 The Employee table is constructed with a primary key as int EmployeeId, a string Name, an ICollection of EmployeeProject and an ICollection of HourReport. 
+
 ![Employee Table Entity Framework](https://media.discordapp.net/attachments/811686462184882177/1105495673517908149/image.png)
 
 ### Project
 The Project table has a primary key as int ProjectId, a string Name and an ICollection of EmployeeProject.
+
 ![Project Table Entity Framework](https://media.discordapp.net/attachments/811686462184882177/1105495672972644402/image.png)
 
 ### HourReport 
 The HourReport has a primary key as int ReportId, an int EmployeeId, a DateTime DateWorked and an double HoursWorked.
+
 ![HourReport Table Entity Framework](https://media.discordapp.net/attachments/811686462184882177/1105495672645492846/image.png)
 
 ### EmployeeProject 
@@ -93,62 +96,97 @@ https://localhost:1234/UpdateNameOfEmployee/id7/FaaBar
 
 ### Employee API Calls
 &darr; Get all Employees  &darr;
-``` https://localhost:****/api/Employee ```
+``` 
+https://localhost:****/api/Employee 
+```
 
 &darr; Get Employee by Id &darr;
-``` https://localhost:****/GetEmployee/id(id) ```
+``` 
+https://localhost:****/GetEmployee/id(id)
+```
 
 &darr; Change name of Employee &darr;
-``` https://localhost:****/UpdateNameOfEmployee/id(id)/(newName) ```
+```
+https://localhost:****/UpdateNameOfEmployee/id(id)/(newName) 
+```
 
 &darr; Delete Employee by Id &darr;
-``` https://localhost:****/DeleteEmployee/id(id) ```
+``` 
+https://localhost:****/DeleteEmployee/id(id) 
+```
 
 &darr; Get all Employee on a Project with Id &darr;
-``` https://localhost:****/GetEmployeesForProject/id(id) ```
+``` 
+https://localhost:****/GetEmployeesForProject/id(id) 
+```
 
 ### Project API Calls
 &darr; Get all Projects  &darr;
-``` https://localhost:****/api/Project ```
+```
+https://localhost:****/api/Project 
+```
 
 &darr; Get a Project by Id &darr;
-``` https://localhost:****/api/Project/ProjectId?id=(id) ```
+``` 
+https://localhost:****/api/Project/ProjectId?id=(id) 
+```
 
 &darr; Update the name of Project &darr;
-``` https://localhost:****/UpdateNameOfProject/id(id)/(newName) ```
+``` 
+https://localhost:****/UpdateNameOfProject/id(id)/(newName) 
+```
 
 &darr; Delete a Project &darr;
-``` https://localhost:****/DeleteProject/id(id) ```
+``` 
+https://localhost:****/DeleteProject/id(id) 
+```
 
 ### Hour Report API Calls
 &darr; Get all Hour Reports  &darr;
-``` https://localhost:****/api/HourReport ```
+``` 
+https://localhost:****/api/HourReport 
+```
 
 &darr; Get Hour Report with Id  &darr;
-``` https://localhost:****/api/HourReport/HourReportId?id=(id) ```
+``` 
+https://localhost:****/api/HourReport/HourReportId?id=(id) 
+```
 
 &darr; Get all Hour Reports for Employee with Id &darr;
-``` https://localhost:****/EmployeeHourReport/id(id) ```
+``` 
+https://localhost:****/EmployeeHourReport/id(id) 
+```
 
 &darr; Get all Hours Worked in a specific week for a Employee with Id  &darr;
-``` https://localhost:****/EmployeeHourReport/id(id)/week(week) ```
+``` 
+https://localhost:****/EmployeeHourReport/id(id)/week(week) 
+```
 
 &darr; Update a Hour Report with ReportId, EmployeeId and a new DateTime &darr;
-``` https://localhost:****/UpdateHourReport/id(reportId)/employeeId/date?employeeId=(employeeId)&date=(date) ```
+``` 
+https://localhost:****/UpdateHourReport/id(reportId)/employeeId/date?employeeId=(employeeId)&date=(date) 
+```
 
 &darr; Delete a Hour Report by Id  &darr;
-``` https://localhost:****/DeleteHourReport/id(id) ```
+``` 
+https://localhost:****/DeleteHourReport/id(id) 
+```
 
 ### Employee Project API Calls
 &darr; Get Employee Projects &darr;
-``` https://localhost:****/api/EmployeeProject ```
+``` 
+https://localhost:****/api/EmployeeProject 
+```
 
 &darr; Get Employee Projects by Id &darr;
-``` https://localhost:****/GetEmployeeProject/id(id) ```
+``` 
+https://localhost:****/GetEmployeeProject/id(id) 
+```
 
 &darr; Update Employee Projects &darr;
-``` https://localhost:****/UpdateEmployeeProject/id(id)/employeeId/projectId?employeeId=(id)&projectId=(id) ```
-
+``` 
+https://localhost:****/UpdateEmployeeProject/id(id)/employeeId/projectId?employeeId=(id)&projectId=(id) 
+```
 
 ## Contributors 
 This is the amazing people that worked and contributed to the Silver Pirates group project.
@@ -159,7 +197,6 @@ This is the amazing people that worked and contributed to the Silver Pirates gro
 | | <img src="https://avatars.githubusercontent.com/u/113690228?v=4" width="100" height="100"> | **Lucas Person Öhlin** | [Lucas Person Öhlin](https://github.com/lucas-ohlin) |
 | | <img src="https://avatars.githubusercontent.com/u/114058299?v=4" width="100" height="100"> | **Emil Treptow** | [Emil Treptow](https://github.com/Lykrat) |
 | | | | | |
-
 
 ## NuGet Packages
 There are a couple of NuGet Packages Required to run this application. 
