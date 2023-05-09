@@ -10,6 +10,7 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
+        // Add a new relation between an Employee and Project
         public async Task<EmployeeProject> Add(EmployeeProject newEntity)
         {
             if (newEntity != null)
@@ -21,6 +22,7 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Delete a current relation between Employee and Project 
         public async Task<EmployeeProject> Delete(int id)
         {
             var result = await GetSingle(id);
@@ -33,16 +35,19 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Get all relations between Employee and Projects
         public async Task<IEnumerable<EmployeeProject>> GetAll()
         {
             return await _appDbContext.EmployeeProjects.ToListAsync();
         }
 
+        // Get a single EmployeeProjects relation
         public async Task<EmployeeProject> GetSingle(int id)
         {
             return await _appDbContext.EmployeeProjects.FirstOrDefaultAsync(e => e.EmployeeProjectId == id);
         }
 
+        // Update a current EmployeeProject relation
         public async Task<EmployeeProject> Update(EmployeeProject entity)
         {
             var employeProject = _appDbContext.EmployeeProjects.FirstOrDefault(p => p.EmployeeProjectId == entity.EmployeeId);

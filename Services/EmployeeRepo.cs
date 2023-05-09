@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using Silver_Pirates.Models;
 using Silver_Pirates_API;
-using System.Text;
 
 namespace Silver_Pirates.Services {
 
@@ -13,6 +11,7 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
+        // Add a new Employee
         public async Task<Employee> Add(Employee newEntity)
         {
             if (newEntity != null)
@@ -24,6 +23,7 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Remove an existing Employee
         public async Task<Employee> Delete(int id)
         {
             var result = await GetSingle(id);
@@ -36,10 +36,13 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Get all Employees
         public async Task<IEnumerable<Employee>> GetAll()
         {
             return await _appDbContext.Employees.ToListAsync();
         }
+
+        // Get a Employee for a specific project
         public async Task<IEnumerable<Employee>> GetEmployeesForProject(int id)
         {
             var result = await _appDbContext.EmployeeProjects.Where(p => p.ProjectId == id).Select(e => e.Employee).ToListAsync();
@@ -53,11 +56,13 @@ namespace Silver_Pirates.Services {
             }
         }
 
+        // Get an Employee from EmployeeId
         public async Task<Employee> GetSingle(int id)
         {
             return await _appDbContext.Employees.FirstOrDefaultAsync(p => p.EmployeeId == id);
         }
 
+        // Update a current Employee
         public async Task<Employee> Update(Employee entity)
         {
             var employee = _appDbContext.Employees.FirstOrDefault(p => p.EmployeeId == entity.EmployeeId);
@@ -68,18 +73,5 @@ namespace Silver_Pirates.Services {
             }
             return null;
         }
-
-        //public Employee Update(Employee entity) {
-        //    var employee = _appDbContext.Employees.FirstOrDefault(e => e.EmployeeId == entity.EmployeeId);
-        //    if (employee != null) {
-        //        employee.Name = entity.Name;
-        //        _appDbContext.SaveChangesAsync();
-        //        return employee;
-        //    } else {
-        //        return null;
-        //    }
-        //}
-
     }
-
 }

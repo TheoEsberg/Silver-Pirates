@@ -15,6 +15,7 @@ namespace Silver_Pirates.Controllers
             this._employee = employee;
         }
 
+        // Get all employees
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -22,6 +23,7 @@ namespace Silver_Pirates.Controllers
             return Ok(employees);
         }
 
+        // Get employee by EmployeeId
         [HttpGet("/GetEmployee/id{id:int}")]
         public async Task<IActionResult> GetEmployee(int id) {
 
@@ -51,6 +53,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
+        // Add a new Employee
         [HttpPost]
         public async Task<IActionResult> NewEmployee(Employee employee) {
 
@@ -67,6 +70,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
+        // Delete an existing Employee by EmployeeId
         [HttpDelete("/DeleteEmployee/id{id:int}")]
         public async Task<IActionResult> DeleteEmployee(int id) {
 
@@ -78,6 +82,8 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Employee with Id : {id} was not found...");
 
         }
+
+        // Get all the Employees on a Project by ProjectId
         [HttpGet("/GetEmployeesForProject/id{id:int}")]
         public async Task<IActionResult> GetEmployeesForProject(int id)
         {

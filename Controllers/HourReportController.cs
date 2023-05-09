@@ -15,12 +15,14 @@ namespace Silver_Pirates.Controllers
             this._hourReport = hourReport;
         }
 
+        // Get all HourReports
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _hourReport.GetAll());
         }
 
+        // Get a HourReport by HourReportId
         [HttpGet("HourReportId")]
         public async Task<IActionResult> GetHourReport(int id) {
             var res = await _hourReport.GetSingle(id);
@@ -31,6 +33,7 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Hour Report with {id} was not found...");
         }
 
+        // Get all HourReports connected to a Employee by EmployeeId
         [HttpGet("/EmployeeHourReport/id{id:int}")]
         public async Task<IActionResult> GetAllHourReportsById(int id)
         {
@@ -42,6 +45,7 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Employee with {id} was not found...");
         }
 
+        // Get all Hours Worked at a specific week by EmployeeId
         [HttpGet("/EmployeeHourReport/id{id:int}/week{week:int}")]
         public async Task<IActionResult> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
@@ -49,6 +53,7 @@ namespace Silver_Pirates.Controllers
             return Ok($"Employee with id = {id} has worked {res}h on week {week}.");
         }
 
+        // Update a Hour Report by HourReport Id
         [HttpPut("/UpdateHourReport/id{id:int}/employeeId/date")]
         public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) {
 
@@ -66,6 +71,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
+        // Add a new HourReport
         [HttpPost]
         public async Task<IActionResult> NewHourReport(HourReport hourReport) {
 
@@ -83,6 +89,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
+        // Delete an existing HourReport
         [HttpDelete("/DeleteHourReport/id{id:int}")]
         public async Task<IActionResult> DeleteProject(int id) {
 
@@ -92,8 +99,6 @@ namespace Silver_Pirates.Controllers
                 return Ok(res);
             }
             return NotFound($"Hour report with Id : {id} was not found...");
-
         }
-
     }
 }

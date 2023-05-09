@@ -15,12 +15,14 @@ namespace Silver_Pirates.Controllers
             this._project = project;
         }
 
+        // Get all Projects
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _project.GetAll());
         }
 
+        // Get a Projects by ProjectControllerId
         [HttpGet("ProjectId")]
         public async Task<IActionResult> GetProject(int id) {
             var res = await _project.GetSingle(id);
@@ -30,6 +32,7 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Project with {id} was not found...");
         }
 
+        // Update a name of a Project by ProjectId
         [HttpPut("/UpdateNameOfProject/id{id:int}/{name}")]
         public async Task<IActionResult> UpdateProject(int id, string name) {
 
@@ -46,6 +49,7 @@ namespace Silver_Pirates.Controllers
 
         }
 
+        // Add a new Project 
         [HttpPost]
         public async Task<IActionResult> NewProject(Project project) {
 
@@ -60,9 +64,9 @@ namespace Silver_Pirates.Controllers
             } catch (Exception) {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add project...");
             }
-
         }
 
+        // Delete an existing Project by ProjectId
         [HttpDelete("/DeleteProject/id{id:int}")]
         public async Task<IActionResult> DeleteProject(int id) {
 
@@ -72,8 +76,6 @@ namespace Silver_Pirates.Controllers
                 return Ok(res);
             }
             return NotFound($"Project with Id : {id} was not found...");
-
         }
-
     }
 }

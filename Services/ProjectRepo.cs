@@ -11,6 +11,7 @@ namespace Silver_Pirates.Services {
             this._appDbContext = appDbContext;
         }
 
+        // Add a new Project
         public async Task<Project> Add(Project newEntity)
         {
             if (newEntity != null)
@@ -22,6 +23,7 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Delete a current Project
         public async Task<Project> Delete(int id)
         {
             var result = await GetSingle(id);
@@ -33,16 +35,19 @@ namespace Silver_Pirates.Services {
             return null;
         }
 
+        // Get all projects
         public async Task<IEnumerable<Project>> GetAll()
         {
             return await _appDbContext.Projects.ToListAsync();
         }
 
+        // Get a single project from ProjectId
         public async Task<Project> GetSingle(int id)
         {
             return await _appDbContext.Projects.FirstOrDefaultAsync(e => e.ProjectId == id);
         }
 
+        // Update a project
         public async Task<Project> Update(Project entity)
         {
             var project = _appDbContext.Projects.FirstOrDefault(p => p.ProjectId == entity.ProjectId);
@@ -54,5 +59,4 @@ namespace Silver_Pirates.Services {
             return null;
         }
     }
-
 }
