@@ -59,7 +59,7 @@ namespace Silver_Pirates.Services {
 
         public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
-            var hourReports = await _appDbContext.HourReports.Where(e => e.EmployeeId == id).ToListAsync();
+            var hourReports = await GetAllHourReportsFromEmployee(id);
             List<HourReport> hrToReturn = new List<HourReport>();
             foreach(HourReport hr in hourReports)
             {
