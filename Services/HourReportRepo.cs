@@ -70,7 +70,7 @@ namespace Silver_Pirates.Services {
                 int weekNumber = culture.Calendar.GetWeekOfYear(date, weekRule, firstDayOfWeek);
                 if (weekNumber == week)
                 {
-                    hrToReturn.Append(hr);
+                    hrToReturn.Add(hr);
                 }
             }
             return hrToReturn;
