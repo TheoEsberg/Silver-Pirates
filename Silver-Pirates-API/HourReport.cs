@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Silver_Pirates_API
 {
@@ -16,3 +11,6 @@ namespace Silver_Pirates_API
         public Employee Employee { get; set; }
     }
 }
+
+
+
