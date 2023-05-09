@@ -16,14 +16,14 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_hourReport.GetAll());
+            return Ok(await _hourReport.GetAll());
         }
 
         [HttpGet("HourReportId")]
-        public IActionResult GetHourReport(int id) {
-            var res = _hourReport.GetSingle(id);
+        public async Task<IActionResult> GetHourReport(int id) {
+            var res = await _hourReport.GetSingle(id);
             if (res != null) {
                 return Ok(res);
             }
@@ -32,9 +32,9 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpGet("/EmployeeHourReport/id{id:int}")]
-        public IActionResult GetAllHourReportsById(int id)
+        public async Task<IActionResult> GetAllHourReportsById(int id)
         {
-            var res = _hourReport.GetAllHourReportsFromEmployee(id);
+            var res = await _hourReport.GetAllHourReportsFromEmployee(id);
             if (res != null)
             {
                 return Ok(res);
@@ -43,9 +43,9 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpGet("/EmployeeHourReport/id{id:int}/week{week:int}")]
-        public IActionResult GetAllHourReportsFromEmployeeByWeek(int id, int week)
+        public async Task<IActionResult> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
-            var res = _hourReport.GetAllHourReportsFromEmployeeByWeek(id, week);
+            var res = await _hourReport.GetAllHourReportsFromEmployeeByWeek(id, week);
             if (res != null)
             {
                 return Ok(res);
@@ -54,16 +54,16 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpPut("/UpdateHourReport/id{id:int}/{name}")]
-        public IActionResult UpdateHourReport(int id, int employeeId, DateTime date) {
+        public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) {
 
-            var res = _hourReport.GetSingle(id);
+            var res = await _hourReport.GetSingle(id);
             if (res != null) {
                 HourReport updated = new HourReport {
                     ReportId = id,
                     EmployeeId = employeeId,
                     DateWorked = date
                 };
-                _hourReport.Update(updated);
+                await _hourReport.Update(updated);
                 return Ok(updated);
             }
             return NotFound($"Hour report with Id : {id} was not found...");
@@ -71,14 +71,13 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewHourReport(HourReport hourReport) {
+        public async Task<IActionResult> NewHourReport(HourReport hourReport) {
 
             try {
-
                 if (hourReport == null)
                     return BadRequest();
 
-                var newHourReport = _hourReport.Add(hourReport);
+                var newHourReport = await _hourReport.Add(hourReport);
                 //Gets the name of the employee ás well as returns the id
                 return CreatedAtAction(nameof(GetHourReport), new { Id = hourReport.ReportId }, newHourReport);
 
@@ -89,11 +88,11 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpDelete("/DeleteHourReport/id{id:int}")]
-        public IActionResult DeleteProject(int id) {
+        public async Task<IActionResult> DeleteProject(int id) {
 
-            var res = _hourReport.GetSingle(id);
+            var res = await _hourReport.GetSingle(id);
             if (res != null) {
-                _hourReport.Delete(id);
+                await _hourReport.Delete(id);
                 return Ok(res);
             }
             return NotFound($"Hour report with Id : {id} was not found...");
