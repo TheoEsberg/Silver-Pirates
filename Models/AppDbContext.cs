@@ -16,7 +16,7 @@ namespace Silver_Pirates.Models {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
-            //Employee
+            //Employees
             modelBuilder.Entity<Employee>().HasData(
                 new Employee { EmployeeId = 1, Name = "Emil", EmployeeProjects = new List<EmployeeProject>(), Hours = new List<HourReport>() },
                 new Employee { EmployeeId = 2, Name = "Theo", EmployeeProjects = new List<EmployeeProject>(), Hours = new List<HourReport>() },
@@ -31,7 +31,7 @@ namespace Silver_Pirates.Models {
                 new Project { ProjectId = 4, Name = "Granny Monster", EmployeeProjects = new List<EmployeeProject>() }
             );
 
-            //Hour reports
+            //Hour Reports
             modelBuilder.Entity<HourReport>().HasData(
                 new HourReport { ReportId = 1, EmployeeId = 1, HoursWorked = 4.6, DateWorked = DateTime.Now.AddDays(-7) },
                 new HourReport { ReportId = 2, EmployeeId = 2, HoursWorked = 7.9, DateWorked = DateTime.Now.AddDays(-7) },
@@ -41,6 +41,7 @@ namespace Silver_Pirates.Models {
                 new HourReport { ReportId = 6, EmployeeId = 3, HoursWorked = 12.2, DateWorked = DateTime.Now.AddMinutes(-30) }
             );
            
+            // Employee Projects
             modelBuilder.Entity<EmployeeProject>().HasData(
                 new EmployeeProject { EmployeeProjectId = 1, EmployeeId = 1, ProjectId = 2 },
                 new EmployeeProject { EmployeeProjectId = 2, EmployeeId = 1, ProjectId = 4 },
@@ -48,8 +49,6 @@ namespace Silver_Pirates.Models {
                 new EmployeeProject { EmployeeProjectId = 4, EmployeeId = 3, ProjectId = 1 },
                 new EmployeeProject { EmployeeProjectId = 5, EmployeeId = 3, ProjectId = 3 }
             );
-
-
         }
     }
 }
