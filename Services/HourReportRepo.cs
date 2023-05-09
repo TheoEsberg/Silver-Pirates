@@ -57,10 +57,10 @@ namespace Silver_Pirates.Services {
             return result ?? null;
         }
 
-        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployeeByWeek(int id, int week)
+        public async Task<double> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
             var hourReports = await GetAllHourReportsFromEmployee(id);
-            List<HourReport> hrToReturn = new List<HourReport>();
+            double totalHoursWorked = 0;
             foreach(HourReport hr in hourReports)
             {
                 DateTime date = hr.DateWorked;
@@ -70,10 +70,10 @@ namespace Silver_Pirates.Services {
                 int weekNumber = culture.Calendar.GetWeekOfYear(date, weekRule, firstDayOfWeek);
                 if (weekNumber == week)
                 {
-                    hrToReturn.Add(hr);
+                    totalHoursWorked += hr.HoursWorked;
                 }
             }
-            return hrToReturn;
+            return totalHoursWorked;
         }
     }
 
