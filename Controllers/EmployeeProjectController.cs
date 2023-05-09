@@ -14,9 +14,9 @@ namespace Silver_Pirates.Controllers
             this._employeeProject = employeeProject;
         }
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_employeeProject.GetAll());
+            return Ok(await _employeeProject.GetAll());
         }
     }
 }

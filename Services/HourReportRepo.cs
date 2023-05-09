@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore;
 using Silver_Pirates.Models;
 using Silver_Pirates_API;
 using System.Collections;
+using System.Globalization;
 
 namespace Silver_Pirates.Services {
 
@@ -10,12 +12,6 @@ namespace Silver_Pirates.Services {
         private AppDbContext _appDbContext;
         public HourReportRepo(AppDbContext appDbContext) {
             this._appDbContext = appDbContext;
-        }
-
-        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployee(int id)
-        {
-            var result = await _appDbContext.HourReports.Where(e => e.EmployeeId == id).ToListAsync();
-            return result ?? null;
         }
 
         public async Task<IEnumerable<HourReport>> GetAll()
@@ -54,6 +50,30 @@ namespace Silver_Pirates.Services {
                 return result;
             }
             return null;
+        }
+        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployee(int id)
+        {
+            var result = await _appDbContext.HourReports.Where(e => e.EmployeeId == id).ToListAsync();
+            return result ?? null;
+        }
+
+        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployeeByWeek(int id, int week)
+        {
+            var hourReports = await GetAllHourReportsFromEmployee(id);
+            List<HourReport> hrToReturn = new List<HourReport>();
+            foreach(HourReport hr in hourReports)
+            {
+                DateTime date = hr.DateWorked;
+                CultureInfo culture = CultureInfo.CurrentCulture;
+                CalendarWeekRule weekRule = culture.DateTimeFormat.CalendarWeekRule;
+                DayOfWeek firstDayOfWeek = culture.DateTimeFormat.FirstDayOfWeek;
+                int weekNumber = culture.Calendar.GetWeekOfYear(date, weekRule, firstDayOfWeek);
+                if (weekNumber == week)
+                {
+                    hrToReturn.Add(hr);
+                }
+            }
+            return hrToReturn;
         }
     }
 
