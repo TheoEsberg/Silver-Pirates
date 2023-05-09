@@ -37,7 +37,15 @@ namespace Silver_Pirates.Services {
 
         public async Task<HourReport> Update(HourReport entity)
         {
-            throw new NotImplementedException();
+            var hourReport = _appDbContext.HourReports.FirstOrDefault(p => p.ReportId == entity.ReportId);
+            if (hourReport != null) {
+                hourReport.ReportId = entity.ReportId;
+                hourReport.EmployeeId = entity.EmployeeId;
+                hourReport.DateWorked = entity.DateWorked;
+                await _appDbContext.SaveChangesAsync();
+                return hourReport;
+            }
+            return null;
         }
 
         public async Task<HourReport> Delete(int id)
