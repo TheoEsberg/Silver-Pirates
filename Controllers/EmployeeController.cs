@@ -16,15 +16,16 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_employee.GetAll());
+            var employees = await _employee.GetAll();
+            return Ok(employees);
         }
 
         [HttpGet("/GetEmployee/id{id:int}")]
-        public IActionResult GetEmployee(int id) {
+        public async Task<IActionResult> GetEmployee(int id) {
 
-            var res = _employee.GetSingle(id);
+            var res = await _employee.GetSingle(id);
             if (res != null) {
                 return Ok(res);
             }
@@ -35,15 +36,15 @@ namespace Silver_Pirates.Controllers
         //WIll probably be changed in the future
         // since it only changes the name atm
         [HttpPut("/UpdateNameOfEmployee/id{id:int}/{name}")]
-        public IActionResult UpdateEmployee(int id, string name) {
+        public async Task<IActionResult> UpdateEmployee(int id, string name) {
 
-            var res = _employee.GetSingle(id);
+            var res = await _employee.GetSingle(id);
             if (res != null) {
                 Employee updated = new Employee {
                     EmployeeId = id,
                     Name = name
                 };
-                _employee.Update(updated);
+                await _employee.Update(updated);
                 return Ok(updated); 
             }
             return NotFound($"Employee with Id : {id} was not found...");
@@ -51,14 +52,13 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewEmployee(Employee employee) {
+        public async Task<IActionResult> NewEmployee(Employee employee) {
 
             try {
-
                 if (employee == null)
                     return BadRequest();
 
-                var newEmployee = _employee.Add(employee);
+                var newEmployee = await _employee.Add(employee);
                 return CreatedAtAction(nameof(GetEmployee), new { Id = employee.EmployeeId }, newEmployee);
 
             } catch (Exception) {
@@ -68,11 +68,11 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpDelete("/DeleteEmployee/id{id:int}")]
-        public IActionResult DeleteEmployee(int id) {
+        public async Task<IActionResult> DeleteEmployee(int id) {
 
-            var res = _employee.GetSingle(id);
+            var res = await _employee.GetSingle(id);
             if (res != null) {
-                _employee.Delete(id);
+                await _employee.Delete(id);
                 return Ok(res);
             }
             return NotFound($"Employee with Id : {id} was not found...");
