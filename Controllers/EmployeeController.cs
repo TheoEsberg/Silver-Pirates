@@ -51,15 +51,15 @@ namespace Silver_Pirates.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewEmployee(int id, string name) {
+        public IActionResult NewEmployee(Employee employee) {
 
             try {
 
-                Employee newEmployee = new Employee() {
-                    EmployeeId = id,
-                    Name = name
-                };
-                return Ok(newEmployee);
+                if (employee == null)
+                    return BadRequest();
+
+                var newEmployee = _employee.Add(employee);
+                return CreatedAtAction(nameof(GetEmployee), new { Id = employee.EmployeeId }, newEmployee);
 
             } catch (Exception) {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add employee...");
