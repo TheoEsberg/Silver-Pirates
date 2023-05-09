@@ -54,7 +54,7 @@ För att kunna få VG ska du:
 * Microsoft.EntityFrameworkCore.SqlServer
 * Microsoft.EntityFrameworkCore.Tools
 
-## Code to Inject for nuget packages: 
+## Code To Inject NuGet Packages: 
 ```
 NuGet\Install-Package Microsoft.EntityFrameworkCore -Version 7.0.5 
 NuGet\Install-Package Microsoft.EntityFrameworkCore.Design -Version 7.0.5 
