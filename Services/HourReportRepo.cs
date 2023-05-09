@@ -37,7 +37,15 @@ namespace Silver_Pirates.Services {
 
         public async Task<HourReport> Update(HourReport entity)
         {
-            throw new NotImplementedException();
+            var hourReport = _appDbContext.HourReports.FirstOrDefault(p => p.ReportId == entity.ReportId);
+            if (hourReport != null) {
+                hourReport.ReportId = entity.ReportId;
+                hourReport.EmployeeId = entity.EmployeeId;
+                hourReport.DateWorked = entity.DateWorked;
+                await _appDbContext.SaveChangesAsync();
+                return hourReport;
+            }
+            return null;
         }
 
         public async Task<HourReport> Delete(int id)
@@ -57,10 +65,10 @@ namespace Silver_Pirates.Services {
             return result ?? null;
         }
 
-        public async Task<IEnumerable<HourReport>> GetAllHourReportsFromEmployeeByWeek(int id, int week)
+        public async Task<double> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
             var hourReports = await GetAllHourReportsFromEmployee(id);
-            List<HourReport> hrToReturn = new List<HourReport>();
+            double totalHoursWorked = 0;
             foreach(HourReport hr in hourReports)
             {
                 DateTime date = hr.DateWorked;
@@ -70,10 +78,10 @@ namespace Silver_Pirates.Services {
                 int weekNumber = culture.Calendar.GetWeekOfYear(date, weekRule, firstDayOfWeek);
                 if (weekNumber == week)
                 {
-                    hrToReturn.Add(hr);
+                    totalHoursWorked += hr.HoursWorked;
                 }
             }
-            return hrToReturn;
+            return totalHoursWorked;
         }
     }
 

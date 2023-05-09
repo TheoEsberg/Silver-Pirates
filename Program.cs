@@ -22,7 +22,7 @@ namespace Silver_Pirates
             builder.Services.AddScoped<IHourReport<HourReport>, HourReportRepo>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Connection-Theo")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Connection-Lucas")));
 
             var app = builder.Build();
 

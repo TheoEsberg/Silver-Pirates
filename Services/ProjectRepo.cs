@@ -25,7 +25,12 @@ namespace Silver_Pirates.Services {
         public async Task<Project> Delete(int id)
         {
             var result = await GetSingle(id);
-            throw new NotImplementedException();
+            if (result != null) {
+                _appDbContext.Remove(result);
+                await _appDbContext.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
 
         public async Task<IEnumerable<Project>> GetAll()
@@ -40,7 +45,13 @@ namespace Silver_Pirates.Services {
 
         public async Task<Project> Update(Project entity)
         {
-            throw new NotImplementedException();
+            var project = _appDbContext.Projects.FirstOrDefault(p => p.ProjectId == entity.ProjectId);
+            if (project != null) {
+                project.Name = entity.Name;
+                await _appDbContext.SaveChangesAsync();
+                return project;
+            }
+            return null;
         }
     }
 

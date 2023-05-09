@@ -46,14 +46,10 @@ namespace Silver_Pirates.Controllers
         public async Task<IActionResult> GetAllHourReportsFromEmployeeByWeek(int id, int week)
         {
             var res = await _hourReport.GetAllHourReportsFromEmployeeByWeek(id, week);
-            if (res != null)
-            {
-                return Ok(res);
-            }
-            return NotFound($"Employee with {id} was not found...");
+            return Ok($"Employee with id = {id} has worked {res}h on week {week}.");
         }
 
-        [HttpPut("/UpdateHourReport/id{id:int}/{name}")]
+        [HttpPut("/UpdateHourReport/id{id:int}/employeeId/date")]
         public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) {
 
             var res = await _hourReport.GetSingle(id);

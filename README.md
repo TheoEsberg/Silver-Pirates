@@ -7,7 +7,7 @@
     
 - [x]  Du behöver minst tre modells (Employee, Project och TimReport)
 - [x]  Du behöver att bygga databas till projektet med hjälp av Entity Framework.
-- [ ]  Du behöver att bygga appen med Repository pattern i fall företaget kommer att använda en annan data källa i framtiden
+- [x]  Du behöver att bygga appen med Repository pattern i fall företaget kommer att använda en annan data källa i framtiden
 - [ ]  Du ska bygga upp databasen och relationerna i denna så den uppnår alla kriterierna nedan
 - [ ]  Du ska skapa ett REST-API som tillåter att alla kriterierna nedan går att genomföra genom det APIet så att vi i framtiden kan bygga en frontend/ett gränssnitt till detta API för att få fram en hel applikation.
 
