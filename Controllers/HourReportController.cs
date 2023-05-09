@@ -53,7 +53,7 @@ namespace Silver_Pirates.Controllers
             return NotFound($"Employee with {id} was not found...");
         }
 
-        [HttpPut("/UpdateHourReport/id{id:int}/{name}")]
+        [HttpPut("/UpdateHourReport/id{id:int}/employeeId/date")]
         public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) {
 
             var res = await _hourReport.GetSingle(id);
