@@ -40,12 +40,19 @@ namespace Silver_Pirates.Services {
 
         public async Task<EmployeeProject> GetSingle(int id)
         {
-            return await _appDbContext.EmployeeProjects.FirstOrDefaultAsync(e => e.EmployeeProjectId == 1);
+            return await _appDbContext.EmployeeProjects.FirstOrDefaultAsync(e => e.EmployeeProjectId == id);
         }
 
         public async Task<EmployeeProject> Update(EmployeeProject entity)
         {
-            throw new NotImplementedException();
+            var employeProject = _appDbContext.EmployeeProjects.FirstOrDefault(p => p.EmployeeProjectId == entity.EmployeeId);
+            if (employeProject != null) {
+                employeProject.EmployeeId = entity.EmployeeId;
+                employeProject.ProjectId = entity.ProjectId;
+                await _appDbContext.SaveChangesAsync();
+                return employeProject;
+            }
+            return null;
         }
     }
 }

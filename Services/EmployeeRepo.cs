@@ -48,7 +48,13 @@ namespace Silver_Pirates.Services {
 
         public async Task<Employee> Update(Employee entity)
         {
-            throw new NotImplementedException();
+            var employee = _appDbContext.Employees.FirstOrDefault(p => p.EmployeeId == entity.EmployeeId);
+            if (employee != null) {
+                employee.Name = entity.Name;
+                await _appDbContext.SaveChangesAsync();
+                return employee;
+            }
+            return null;
         }
 
         //public Employee Update(Employee entity) {
