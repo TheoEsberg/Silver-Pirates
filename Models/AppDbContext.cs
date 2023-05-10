@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Silver_Pirates_API;
 
-namespace Silver_Pirates.Models {
+namespace Silver_Pirates.Models 
+{
+    public class AppDbContext : DbContext 
+    {
 
-    public class AppDbContext : DbContext {
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+        {
 
         }
 
@@ -14,7 +16,8 @@ namespace Silver_Pirates.Models {
         public DbSet<Project> Projects { get; set; }
         public DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
 
             //Employees
             modelBuilder.Entity<Employee>().HasData(
