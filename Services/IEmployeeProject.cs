@@ -1,7 +1,7 @@
-﻿namespace Silver_Pirates.Services {
-
-    public interface IEmployeeProject<T> {
-
+﻿namespace Silver_Pirates.Services 
+{
+    public interface IEmployeeProject<T> 
+    {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetSingle(int id);
         Task<T> Add(T newEntity);

@@ -23,22 +23,25 @@ namespace Silver_Pirates.Controllers
 
         // Get a single EmployeeProject connection by EmployeeProjectId
         [HttpGet("/GetEmployeeProject/id{id:int}")]
-        public async Task<IActionResult> GetEmployeeProject(int id) {
+        public async Task<IActionResult> GetEmployeeProject(int id) 
+        {
             var res = await _employeeProject.GetSingle(id);
-            if (res != null) {
+            if (res != null) 
+            {
                 return Ok(res);
             }
             return NotFound($"Employee with Id : {id} was not found...");
         }
 
         // Update a EmployeeProject connection by EmployeeProjectId
-        //ex : 2023-05-09T16:20:55
         [HttpPut("/UpdateEmployeeProject/id{id:int}/employeeId/projectId")]
-        public async Task<IActionResult> UpdateEmployeeProject(int id, int employeeId, int projectId) {
-
+        public async Task<IActionResult> UpdateEmployeeProject(int id, int employeeId, int projectId) 
+        {
             var res = await _employeeProject.GetSingle(id);
-            if (res != null) {
-                EmployeeProject updated = new EmployeeProject {
+            if (res != null) 
+            {
+                EmployeeProject updated = new EmployeeProject 
+                {
                     EmployeeProjectId = id,
                     EmployeeId = employeeId,
                     ProjectId = projectId

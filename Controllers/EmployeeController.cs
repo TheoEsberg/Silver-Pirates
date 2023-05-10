@@ -35,14 +35,15 @@ namespace Silver_Pirates.Controllers
 
         }
 
-        //WIll probably be changed in the future
-        // since it only changes the name atm
+        // Update the name of the employee by employeeId & name
         [HttpPut("/UpdateNameOfEmployee/id{id:int}/{name}")]
-        public async Task<IActionResult> UpdateEmployee(int id, string name) {
-
+        public async Task<IActionResult> UpdateEmployee(int id, string name) 
+        {
             var res = await _employee.GetSingle(id);
-            if (res != null) {
-                Employee updated = new Employee {
+            if (res != null) 
+            {
+                Employee updated = new Employee 
+                {
                     EmployeeId = id,
                     Name = name
                 };
@@ -50,37 +51,37 @@ namespace Silver_Pirates.Controllers
                 return Ok(updated); 
             }
             return NotFound($"Employee with Id : {id} was not found...");
-
         }
 
         // Add a new Employee
         [HttpPost]
-        public async Task<IActionResult> NewEmployee(Employee employee) {
-
-            try {
+        public async Task<IActionResult> NewEmployee(Employee employee) 
+        {
+            try 
+            {
                 if (employee == null)
                     return BadRequest();
 
                 var newEmployee = await _employee.Add(employee);
                 return CreatedAtAction(nameof(GetEmployee), new { Id = employee.EmployeeId }, newEmployee);
-
-            } catch (Exception) {
+            } 
+            catch (Exception) 
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add employee...");
             }
-
         }
 
         // Delete an existing Employee by EmployeeId
         [HttpDelete("/DeleteEmployee/id{id:int}")]
-        public async Task<IActionResult> DeleteEmployee(int id) {
-
+        public async Task<IActionResult> DeleteEmployee(int id) 
+        {
             var res = await _employee.GetSingle(id);
-            if (res != null) {
+            if (res != null) 
+            {
                 await _employee.Delete(id);
                 return Ok(res);
             }
             return NotFound($"Employee with Id : {id} was not found...");
-
         }
 
         // Get all the Employees on a Project by ProjectId

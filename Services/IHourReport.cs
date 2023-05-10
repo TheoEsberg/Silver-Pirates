@@ -1,9 +1,9 @@
 ﻿using Silver_Pirates_API;
 
-namespace Silver_Pirates.Services {
-
-    public interface IHourReport<T> {
-
+namespace Silver_Pirates.Services 
+{
+    public interface IHourReport<T> 
+    {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetSingle(int id);
         Task<T> Add(T newEntity);
