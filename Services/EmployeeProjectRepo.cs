@@ -53,7 +53,7 @@ namespace Silver_Pirates.Services
         // Update a current EmployeeProject relation
         public async Task<EmployeeProject> Update(EmployeeProject entity)
         {
-            var employeProject = _appDbContext.EmployeeProjects.FirstOrDefault(p => p.EmployeeProjectId == entity.EmployeeId);
+            var employeProject = _appDbContext.EmployeeProjects.FirstOrDefault(p => p.EmployeeProjectId == entity.EmployeeProjectId);
             if (employeProject != null) 
             {
                 employeProject.EmployeeId = entity.EmployeeId;

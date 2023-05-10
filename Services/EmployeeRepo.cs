@@ -18,7 +18,7 @@ namespace Silver_Pirates.Services
         {
             if (newEntity != null)
             {
-                await _appDbContext.AddAsync(newEntity);
+                await _appDbContext.Employees.AddAsync(newEntity);
                 await _appDbContext.SaveChangesAsync();
                 return newEntity;
             }
