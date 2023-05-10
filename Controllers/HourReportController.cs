@@ -24,12 +24,13 @@ namespace Silver_Pirates.Controllers
 
         // Get a HourReport by HourReportId
         [HttpGet("HourReportId")]
-        public async Task<IActionResult> GetHourReport(int id) {
+        public async Task<IActionResult> GetHourReport(int id) 
+        {
             var res = await _hourReport.GetSingle(id);
-            if (res != null) {
+            if (res != null) 
+            {
                 return Ok(res);
             }
-
             return NotFound($"Hour Report with {id} was not found...");
         }
 
@@ -55,11 +56,13 @@ namespace Silver_Pirates.Controllers
 
         // Update a Hour Report by HourReport Id
         [HttpPut("/UpdateHourReport/id{id:int}/employeeId/date")]
-        public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) {
-
+        public async Task<IActionResult> UpdateHourReport(int id, int employeeId, DateTime date) 
+        {
             var res = await _hourReport.GetSingle(id);
-            if (res != null) {
-                HourReport updated = new HourReport {
+            if (res != null) 
+            {
+                HourReport updated = new HourReport 
+                {
                     ReportId = id,
                     EmployeeId = employeeId,
                     DateWorked = date
@@ -68,33 +71,33 @@ namespace Silver_Pirates.Controllers
                 return Ok(updated);
             }
             return NotFound($"Hour report with Id : {id} was not found...");
-
         }
 
         // Add a new HourReport
         [HttpPost]
-        public async Task<IActionResult> NewHourReport(HourReport hourReport) {
-
-            try {
+        public async Task<IActionResult> NewHourReport(HourReport hourReport) 
+        {
+            try 
+            {
                 if (hourReport == null)
                     return BadRequest();
 
                 var newHourReport = await _hourReport.Add(hourReport);
-                //Gets the name of the employee ás well as returns the id
                 return CreatedAtAction(nameof(GetHourReport), new { Id = hourReport.ReportId }, newHourReport);
-
-            } catch (Exception) {
+            } 
+            catch (Exception) 
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add hour report...");
             }
-
         }
 
         // Delete an existing HourReport
         [HttpDelete("/DeleteHourReport/id{id:int}")]
-        public async Task<IActionResult> DeleteProject(int id) {
-
+        public async Task<IActionResult> DeleteProject(int id) 
+        {
             var res = await _hourReport.GetSingle(id);
-            if (res != null) {
+            if (res != null) 
+            {
                 await _hourReport.Delete(id);
                 return Ok(res);
             }

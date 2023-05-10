@@ -2,12 +2,14 @@
 using Silver_Pirates.Models;
 using Silver_Pirates_API;
 
-namespace Silver_Pirates.Services {
-
-    public class EmployeeRepo : IEmployee<Employee> {
+namespace Silver_Pirates.Services 
+{
+    public class EmployeeRepo : IEmployee<Employee> 
+    {
 
         private AppDbContext _appDbContext;
-        public EmployeeRepo(AppDbContext appDbContext) {
+        public EmployeeRepo(AppDbContext appDbContext) 
+        {
             this._appDbContext = appDbContext;
         }
 
@@ -66,7 +68,8 @@ namespace Silver_Pirates.Services {
         public async Task<Employee> Update(Employee entity)
         {
             var employee = _appDbContext.Employees.FirstOrDefault(p => p.EmployeeId == entity.EmployeeId);
-            if (employee != null) {
+            if (employee != null) 
+            {
                 employee.Name = entity.Name;
                 await _appDbContext.SaveChangesAsync();
                 return employee;

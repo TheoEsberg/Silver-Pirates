@@ -3,12 +3,14 @@ using Silver_Pirates.Models;
 using Silver_Pirates_API;
 using System.Globalization;
 
-namespace Silver_Pirates.Services {
-
-    public class HourReportRepo : IHourReport<HourReport> {
+namespace Silver_Pirates.Services 
+{
+    public class HourReportRepo : IHourReport<HourReport> 
+    {
 
         private AppDbContext _appDbContext;
-        public HourReportRepo(AppDbContext appDbContext) {
+        public HourReportRepo(AppDbContext appDbContext) 
+        {
             this._appDbContext = appDbContext;
         }
 
@@ -40,10 +42,12 @@ namespace Silver_Pirates.Services {
         public async Task<HourReport> Update(HourReport entity)
         {
             var hourReport = _appDbContext.HourReports.FirstOrDefault(p => p.ReportId == entity.ReportId);
-            if (hourReport != null) {
+            if (hourReport != null) 
+            {
                 hourReport.ReportId = entity.ReportId;
                 hourReport.EmployeeId = entity.EmployeeId;
                 hourReport.DateWorked = entity.DateWorked;
+
                 await _appDbContext.SaveChangesAsync();
                 return hourReport;
             }

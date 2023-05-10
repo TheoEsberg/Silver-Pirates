@@ -9,7 +9,6 @@ namespace Silver_Pirates.Controllers
     public class ProjectController : ControllerBase
     {
         private IProject<Project> _project;
-
         public ProjectController(IProject<Project> project)
         {
             this._project = project;
@@ -24,7 +23,8 @@ namespace Silver_Pirates.Controllers
 
         // Get a Projects by ProjectControllerId
         [HttpGet("ProjectId")]
-        public async Task<IActionResult> GetProject(int id) {
+        public async Task<IActionResult> GetProject(int id) 
+        {
             var res = await _project.GetSingle(id);
             if (res != null)
                 return Ok(res);
@@ -34,11 +34,13 @@ namespace Silver_Pirates.Controllers
 
         // Update a name of a Project by ProjectId
         [HttpPut("/UpdateNameOfProject/id{id:int}/{name}")]
-        public async Task<IActionResult> UpdateProject(int id, string name) {
-
+        public async Task<IActionResult> UpdateProject(int id, string name) 
+        {
             var res = await _project.GetSingle(id);
-            if (res != null) {
-                Project updated = new Project {
+            if (res != null) 
+            {
+                Project updated = new Project 
+                {
                     ProjectId = id,
                     Name = name
                 };
@@ -46,32 +48,33 @@ namespace Silver_Pirates.Controllers
                 return Ok(updated);
             }
             return NotFound($"Project with Id : {id} was not found...");
-
         }
 
         // Add a new Project 
         [HttpPost]
-        public async Task<IActionResult> NewProject(Project project) {
-
-            try {
+        public async Task<IActionResult> NewProject(Project project) 
+        {
+            try 
+            {
                 if (project == null)
                     return BadRequest();
 
                 var newProject = await _project.Add(project);
-                //Gets the name of the employee ás well as returns the id
                 return CreatedAtAction(nameof(GetProject), new { Id = project.ProjectId }, newProject);
-
-            } catch (Exception) {
+            } 
+            catch (Exception) 
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add project...");
             }
         }
 
         // Delete an existing Project by ProjectId
         [HttpDelete("/DeleteProject/id{id:int}")]
-        public async Task<IActionResult> DeleteProject(int id) {
-
+        public async Task<IActionResult> DeleteProject(int id) 
+        {
             var res = await _project.GetSingle(id);
-            if (res != null) {
+            if (res != null) 
+            {
                 await _project.Delete(id);
                 return Ok(res);
             }
