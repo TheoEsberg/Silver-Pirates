@@ -112,7 +112,7 @@ https://localhost:****/UpdateNameOfEmployee/id(id)/(newName)
 
 &darr; Add a new Employee  &darr;
 ``` 
-https://localhost:****/api/Employee?employeeName=x 
+https://localhost:****/api/Employee?employeeName=(name) 
 ```
 
 &darr; Delete Employee by Id &darr;
@@ -143,7 +143,7 @@ https://localhost:****/UpdateNameOfProject/id(id)/(newName)
 
 &darr; Add a new Project  &darr;
 ```
-https://localhost:****/api/Project?projectName=x 
+https://localhost:****/api/Project?projectName=(name) 
 ```
 
 &darr; Delete a Project &darr;
@@ -179,7 +179,7 @@ https://localhost:****/UpdateHourReport/id(reportId)/employeeId/date?employeeId=
 
 &darr; Add a new Hour Report  &darr;
 ``` 
-https://localhost:****/api/HourReport?hoursWorked=x&employeeId=x&startDate=x 
+https://localhost:****/api/HourReport?hoursWorked=(hours)&employeeId=(id)&startDate=(datetime) 
 ```
 
 &darr; Delete a Hour Report by Id  &darr;
@@ -201,6 +201,16 @@ https://localhost:****/GetEmployeeProject/id(id)
 &darr; Update Employee Projects &darr;
 ``` 
 https://localhost:****/UpdateEmployeeProject/id(id)/employeeId/projectId?employeeId=(id)&projectId=(id) 
+```
+
+&darr; Add Employee Projects &darr;
+``` 
+https://localhost:****/api/EmployeeProject?employeeId=(id)&projectId=(id) 
+```
+
+&darr; Delete Employee Projects &darr;
+``` 
+https://localhost:****/DeleteEmployeeProject/id(id) 
 ```
 
 ## Contributors 
