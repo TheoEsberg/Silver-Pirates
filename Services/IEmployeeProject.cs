@@ -4,7 +4,7 @@
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetSingle(int id);
-        Task<T> Add(T newEntity);
+        Task<T> Add(int EmployeeId,int ProjectId);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
     }

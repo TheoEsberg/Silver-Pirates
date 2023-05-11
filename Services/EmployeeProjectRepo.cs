@@ -14,8 +14,12 @@ namespace Silver_Pirates.Services
         }
 
         // Add a new relation between an Employee and Project
-        public async Task<EmployeeProject> Add(EmployeeProject newEntity)
+        public async Task<EmployeeProject> Add(int EmployeeId,int ProjectId)
         {
+            var newEntity = new EmployeeProject();
+            newEntity.EmployeeId = EmployeeId;
+            newEntity.ProjectId = ProjectId;
+
             if (newEntity != null)
             {
                 await _appDbContext.AddAsync(newEntity);
