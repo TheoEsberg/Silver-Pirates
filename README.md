@@ -39,9 +39,9 @@ The goal with this group project is to create a REST API with a database, fulfil
 - [x] Add the ability to get all HourReports, Projects, Employees and EmployeeProjects 
 - [x] Create the ability to Add, Update and Remove an entity in each table
 - [x] Add the ability to get the total Hours Worked for each Employee for a specific week
-- [ ] Test the API with Postman and Swagger
-- [ ] Try to find and fix all eventual bugs
-- [ ] Prettify the code <3
+- [x] Test the API with Postman or Swagger
+- [x] Try to find and fix all eventual bugs
+- [x] Prettify the code <3
 - [ ] Write the README file
 
 ## Database Design
