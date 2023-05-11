@@ -55,15 +55,15 @@ namespace Silver_Pirates.Controllers
 
         // Add a new Employee
         [HttpPost]
-        public async Task<IActionResult> NewEmployee(Employee employee) 
+        public async Task<IActionResult> NewEmployee(string employeeName) 
         {
             try 
             {
-                if (employee == null)
+                if (employeeName == null)
                     return BadRequest();
 
-                var newEmployee = await _employee.Add(employee);
-                return CreatedAtAction(nameof(GetEmployee), new { Id = employee.EmployeeId }, newEmployee);
+                var newEmployee = await _employee.Add(employeeName);
+                return Ok(newEmployee);
             } 
             catch (Exception) 
             {
