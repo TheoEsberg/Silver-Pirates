@@ -110,6 +110,11 @@ https://localhost:****/GetEmployee/id(id)
 https://localhost:****/UpdateNameOfEmployee/id(id)/(newName) 
 ```
 
+&darr; Add a new Employee  &darr;
+``` 
+https://localhost:****/api/Employee?employeeName=x 
+```
+
 &darr; Delete Employee by Id &darr;
 ``` 
 https://localhost:****/DeleteEmployee/id(id) 
@@ -134,6 +139,11 @@ https://localhost:****/api/Project/ProjectId?id=(id)
 &darr; Update the name of Project &darr;
 ``` 
 https://localhost:****/UpdateNameOfProject/id(id)/(newName) 
+```
+
+&darr; Add a new Project  &darr;
+```
+https://localhost:****/api/Project?projectName=x 
 ```
 
 &darr; Delete a Project &darr;
@@ -165,6 +175,11 @@ https://localhost:****/EmployeeHourReport/id(id)/week(week)
 &darr; Update a Hour Report with ReportId, EmployeeId and a new DateTime &darr;
 ``` 
 https://localhost:****/UpdateHourReport/id(reportId)/employeeId/date?employeeId=(employeeId)&date=(date) 
+```
+
+&darr; Add a new Hour Report  &darr;
+``` 
+https://localhost:****/api/HourReport?hoursWorked=x&employeeId=x&startDate=x 
 ```
 
 &darr; Delete a Hour Report by Id  &darr;
