@@ -20,6 +20,21 @@ namespace Silver_Pirates.Controllers
         {
             return Ok(await _employeeProject.GetAll());
         }
+        //Adds a new EmployeeProject connection
+        [HttpPost]
+        public async Task<IActionResult> NewEmployeeProject(int employeeId,int projectId)
+        {
+            try
+            {
+                var newEmployeeProject = await _employeeProject.Add(employeeId, projectId);
+                return Ok(newEmployeeProject);
+            }
+
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error to add hour report...");
+            }
+        }
 
         // Get a single EmployeeProject connection by EmployeeProjectId
         [HttpGet("/GetEmployeeProject/id{id:int}")]
@@ -48,6 +63,17 @@ namespace Silver_Pirates.Controllers
                 };
                 await _employeeProject.Update(updated);
                 return Ok(updated);
+            }
+            return NotFound($"EmployeeProject with Id : {id} was not found...");
+        }
+        [HttpDelete("/DeleteEmployeeProject/id{id:int}")]
+        public async Task<IActionResult> DeleteEmployeeProject(int id)
+        {
+            var res = await _employeeProject.GetSingle(id);
+            if (res != null)
+            {
+                await _employeeProject.Delete(id);
+                return Ok(res);
             }
             return NotFound($"EmployeeProject with Id : {id} was not found...");
         }
