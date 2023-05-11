@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Silver_Pirates.Migrations;
 using Silver_Pirates.Services;
 using Silver_Pirates_API;
 
@@ -75,16 +76,19 @@ namespace Silver_Pirates.Controllers
 
         // Add a new HourReport
         [HttpPost]
-        public async Task<IActionResult> NewHourReport(HourReport hourReport) 
+        public async Task<IActionResult> NewHourReport(double hoursWorked, int employeeId, DateTime startDate) 
         {
             try 
             {
-                if (hourReport == null)
+                if (hoursWorked == 0) 
+                {
                     return BadRequest();
-
-                var newHourReport = await _hourReport.Add(hourReport);
-                return CreatedAtAction(nameof(GetHourReport), new { Id = hourReport.ReportId }, newHourReport);
+                }
+                    
+                var newHourReport = await _hourReport.Add(hoursWorked, employeeId, startDate);
+                return Ok(newHourReport);
             } 
+
             catch (Exception) 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to add hour report...");

@@ -52,15 +52,15 @@ namespace Silver_Pirates.Controllers
 
         // Add a new Project 
         [HttpPost]
-        public async Task<IActionResult> NewProject(Project project) 
+        public async Task<IActionResult> NewProject(string projectName) 
         {
             try 
             {
-                if (project == null)
+                if (projectName == null)
                     return BadRequest();
 
-                var newProject = await _project.Add(project);
-                return CreatedAtAction(nameof(GetProject), new { Id = project.ProjectId }, newProject);
+                var newProject = await _project.Add(projectName);
+                return Ok(newProject);
             } 
             catch (Exception) 
             {

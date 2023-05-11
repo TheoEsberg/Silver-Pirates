@@ -13,8 +13,11 @@ namespace Silver_Pirates.Services
         }
 
         // Add a new Project
-        public async Task<Project> Add(Project newEntity)
+        public async Task<Project> Add(string projectName)
         {
+            var newEntity = new Project();
+            newEntity.Name = projectName;
+
             if (newEntity != null)
             {
                 await _appDbContext.Projects.AddAsync(newEntity);

@@ -27,8 +27,13 @@ namespace Silver_Pirates.Services
         }
 
         // Add a new Hour Report 
-        public async Task<HourReport> Add(HourReport newEntity)
+        public async Task<HourReport> Add(double hoursWorked, int employeeId, DateTime startDate)
         {
+            var newEntity = new HourReport();
+            newEntity.HoursWorked = hoursWorked;
+            newEntity.EmployeeId = employeeId;
+            newEntity.DateWorked = startDate;
+
             if (newEntity != null)
             {
                 await _appDbContext.HourReports.AddAsync(newEntity);

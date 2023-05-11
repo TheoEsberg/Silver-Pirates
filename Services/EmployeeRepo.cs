@@ -14,8 +14,11 @@ namespace Silver_Pirates.Services
         }
 
         // Add a new Employee
-        public async Task<Employee> Add(Employee newEntity)
+        public async Task<Employee> Add(string name)
         {
+            var newEntity = new Employee();
+            newEntity.Name = name;
+
             if (newEntity != null)
             {
                 await _appDbContext.Employees.AddAsync(newEntity);
