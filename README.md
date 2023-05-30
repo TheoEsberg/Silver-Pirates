@@ -42,7 +42,7 @@ The goal with this group project is to create a REST API with a database, fulfil
 - [x] Test the API with Postman or Swagger
 - [x] Try to find and fix all eventual bugs
 - [x] Prettify the code <3
-- [ ] Write the README file
+- [x] Write the README file
 
 ## Database Design
 Our database is constructed with three main tables and one connection table. The three main tables are Employee, Project and HourReport while the connection table is called EmployeeProject. 
